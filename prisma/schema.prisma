@@ -1,0 +1,357 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  PARTNER
+}
+
+enum ServiceCategory {
+  CRECHE
+  PASSEIOS
+  BANHO_TOSA
+  HOTEL
+  ADESTRAMENTO
+}
+
+enum ProfessionalType {
+  PRINCIPAL
+  PARCEIRO
+}
+
+enum DogSize {
+  PEQUENO
+  MEDIO
+  GRANDE
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+  REFUND
+  ADJUSTMENT
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentMethod {
+  CREDIT_BALANCE
+  CASH
+  CARD
+  MBWAY
+  TRANSFER
+  PACK
+}
+
+enum CommissionStatus {
+  PENDING
+  APPROVED
+  PAID
+  DISPUTED
+}
+
+enum MessageType {
+  REMINDER
+  PROMOTION
+  BIRTHDAY
+  FOLLOW_UP
+  REACTIVATION
+  CUSTOM
+}
+
+enum MessageStatus {
+  PENDING
+  SENT
+  DELIVERED
+  READ
+  RECEIVED
+  FAILED
+}
+
+// ─── Utilizadores & Auth ─────────────────────────────────────────
+
+model User {
+  id               String    @id @default(cuid())
+  name             String
+  email            String    @unique
+  password         String
+  role             Role      @default(PARTNER)
+  active           Boolean   @default(true)
+  phone            String?
+  avatar           String?
+  commissionRate   Decimal?  @db.Decimal(5, 2)
+  specialization   String?
+  nif              String?
+  iban             String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  performedServices Appointment[]
+  sentMessages      MessageLog[]
+  commissions       CommissionRecord[]
+
+  @@map("users")
+}
+
+// ─── Serviços ────────────────────────────────────────────────────
+
+model Service {
+  id               String           @id @default(cuid())
+  name             String
+  description      String?
+  category         ServiceCategory
+  price            Decimal          @db.Decimal(10, 2)
+  duration         Int
+  active           Boolean          @default(true)
+  professionalType ProfessionalType @default(PRINCIPAL)
+  imageUrl         String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  appointments Appointment[]
+  packServices PackService[]
+
+  @@map("services")
+}
+
+model Pack {
+  id            String   @id @default(cuid())
+  name          String
+  description   String?
+  totalSessions Int
+  price         Decimal  @db.Decimal(10, 2)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  services    PackService[]
+  clientPacks ClientPack[]
+
+  @@map("packs")
+}
+
+model PackService {
+  id        String  @id @default(cuid())
+  pack      Pack    @relation(fields: [packId], references: [id], onDelete: Cascade)
+  packId    String
+  service   Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+
+  @@unique([packId, serviceId])
+  @@map("pack_services")
+}
+
+// ─── Clientes (Donos) & Cães ─────────────────────────────────────
+
+model Client {
+  id              String    @id @default(cuid())
+  clientNumber    Int       @unique @default(autoincrement())
+  firstName       String
+  lastName        String
+  email           String?
+  phone           String
+  nif             String?
+  address         String?
+  postalCode      String?
+  city            String?
+  country         String    @default("Portugal")
+  birthDate       DateTime?
+  notes           String?
+  allergies       String?
+  gdprConsent     Boolean   @default(false)
+  gdprConsentDate DateTime?
+  whatsappOptIn   Boolean   @default(false)
+  active          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  dogs         Dog[]
+  credits      CreditTransaction[]
+  appointments Appointment[]
+  clientPacks  ClientPack[]
+  messages     MessageLog[]
+
+  @@map("clients")
+}
+
+model Dog {
+  id              String    @id @default(cuid())
+  name            String
+  breed           String?
+  size            DogSize   @default(MEDIO)
+  birthDate       DateTime?
+  weight          Decimal?  @db.Decimal(5, 2)
+  color           String?
+  microchip       String?
+  vaccinated      Boolean   @default(false)
+  neutered        Boolean   @default(false)
+  healthNotes     String?
+  behaviorNotes   String?
+  allergies       String?
+  feedingNotes    String?
+  vetName         String?
+  vetPhone        String?
+  photoUrl        String?
+  active          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  owner           Client    @relation(fields: [ownerId], references: [id])
+  ownerId         String
+  appointments    Appointment[]
+
+  @@map("dogs")
+}
+
+model ClientPack {
+  id           String    @id @default(cuid())
+  client       Client    @relation(fields: [clientId], references: [id])
+  clientId     String
+  pack         Pack      @relation(fields: [packId], references: [id])
+  packId       String
+  sessionsUsed Int       @default(0)
+  purchasedAt  DateTime  @default(now())
+  expiresAt    DateTime?
+
+  @@map("client_packs")
+}
+
+// ─── Créditos Pré-pagos ─────────────────────────────────────────
+
+model CreditTransaction {
+  id            String          @id @default(cuid())
+  client        Client          @relation(fields: [clientId], references: [id])
+  clientId      String
+  type          TransactionType
+  amount        Decimal         @db.Decimal(10, 2)
+  balance       Decimal         @db.Decimal(10, 2)
+  description   String?
+  appointment   Appointment?    @relation(fields: [appointmentId], references: [id])
+  appointmentId String?
+  createdBy     String
+  createdAt     DateTime        @default(now())
+
+  @@map("credit_transactions")
+}
+
+// ─── Reservas ───────────────────────────────────────────────────
+
+model Appointment {
+  id              String            @id @default(cuid())
+  client          Client            @relation(fields: [clientId], references: [id])
+  clientId        String
+  dog             Dog?              @relation(fields: [dogId], references: [id])
+  dogId           String?
+  service         Service           @relation(fields: [serviceId], references: [id])
+  serviceId       String
+  professional    User              @relation(fields: [professionalId], references: [id])
+  professionalId  String
+  scheduledAt     DateTime
+  completedAt     DateTime?
+  status          AppointmentStatus @default(SCHEDULED)
+  price           Decimal           @db.Decimal(10, 2)
+  paymentMethod   PaymentMethod?
+  notes           String?
+  clientPackId    String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  creditTransactions CreditTransaction[]
+  commission         CommissionRecord?
+
+  @@map("appointments")
+}
+
+// ─── Comissões ───────────────────────────────────────────────────
+
+model CommissionRecord {
+  id              String           @id @default(cuid())
+  professional    User             @relation(fields: [professionalId], references: [id])
+  professionalId  String
+  appointment     Appointment      @relation(fields: [appointmentId], references: [id])
+  appointmentId   String           @unique
+  servicePrice    Decimal          @db.Decimal(10, 2)
+  commissionRate  Decimal          @db.Decimal(5, 2)
+  commissionValue Decimal          @db.Decimal(10, 2)
+  status          CommissionStatus @default(PENDING)
+  paidAt          DateTime?
+  paymentRef      String?
+  notes           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@map("commission_records")
+}
+
+model CommissionPeriod {
+  id              String           @id @default(cuid())
+  professionalId  String
+  periodStart     DateTime
+  periodEnd       DateTime
+  totalServices   Int
+  totalRevenue    Decimal          @db.Decimal(10, 2)
+  totalCommission Decimal          @db.Decimal(10, 2)
+  status          CommissionStatus @default(PENDING)
+  approvedBy      String?
+  approvedAt      DateTime?
+  paidAt          DateTime?
+  paymentRef      String?
+  createdAt       DateTime         @default(now())
+
+  @@map("commission_periods")
+}
+
+// ─── Mensagens WhatsApp ──────────────────────────────────────────
+
+model MessageTemplate {
+  id        String      @id @default(cuid())
+  name      String
+  type      MessageType
+  content   String
+  active    Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  logs MessageLog[]
+
+  @@map("message_templates")
+}
+
+model MessageLog {
+  id          String           @id @default(cuid())
+  client      Client?          @relation(fields: [clientId], references: [id])
+  clientId    String?
+  template    MessageTemplate? @relation(fields: [templateId], references: [id])
+  templateId  String?
+  content     String
+  type        MessageType
+  channel     String           @default("WHATSAPP")
+  to          String?
+  status      MessageStatus    @default(PENDING)
+  externalId  String?
+  sentBy      User?            @relation(fields: [sentById], references: [id])
+  sentById    String?
+  createdBy   String?
+  sentAt      DateTime?
+  deliveredAt DateTime?
+  readAt      DateTime?
+  error       String?
+  createdAt   DateTime         @default(now())
+
+  @@map("message_logs")
+}
