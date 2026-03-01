@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     "Santo Tirso",
     "Dog Fella",
   ],
+  manifest: "/manifest.json",
   openGraph: {
     title: "Dog Fella — Creche Canina",
     description: "A Segunda Casa do Seu Melhor Amigo",

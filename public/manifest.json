@@ -1,0 +1,21 @@
+{
+  "name": "Dog Fella - Creche Canina",
+  "short_name": "Dog Fella",
+  "description": "Creche Canina em Santo Tirso",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
