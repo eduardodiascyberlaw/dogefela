@@ -33,7 +33,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "#servicos", label: "Servicos" },
+    { href: "#servicos", label: "Serviços" },
     { href: "#sobre", label: "Sobre" },
     { href: "#packs", label: "Packs" },
     { href: "#galeria", label: "Galeria" },
@@ -72,7 +72,7 @@ const Navbar = () => {
               className="flex items-center gap-2 px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-full hover:bg-sky-500 transition-colors"
             >
               <LogIn size={16} />
-              Area Reservada
+              Área Reservada
             </Link>
           </div>
 
@@ -109,7 +109,7 @@ const Navbar = () => {
               className="flex items-center justify-center gap-2 px-4 py-3 bg-sky-600 text-white rounded-full font-medium"
             >
               <LogIn size={16} />
-              Area Reservada
+              Área Reservada
             </Link>
           </div>
         </motion.div>
@@ -160,8 +160,8 @@ const Hero = () => {
               <span className="text-amber-400">Amigo</span>
             </h1>
             <p className="text-lg text-gray-200 mb-4 max-w-lg">
-              Na Dog Fella, o seu patudo brinca, socializa e e tratado com todo
-              o carinho enquanto voce esta descansado. Porque eles merecem o
+              Na Dog Fella, o seu patudo brinca, socializa e é tratado com todo
+              o carinho enquanto você está descansado. Porque eles merecem o
               melhor!
             </p>
             <p className="text-2xl font-bold text-amber-400 mb-8 italic">
@@ -169,7 +169,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/351910122469?text=Ola! Gostaria de saber mais sobre a creche canina Dog Fella."
+                href="https://wa.me/351910122469?text=Olá! Gostaria de saber mais sobre a creche canina Dog Fella."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-500 transition-all shadow-lg shadow-green-600/25 hover:shadow-green-600/40"
@@ -181,7 +181,7 @@ const Hero = () => {
                 href="#servicos"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
               >
-                Ver Servicos
+                Ver Serviços
                 <ChevronRight size={20} />
               </a>
             </div>
@@ -209,7 +209,7 @@ const serviceCategories = [
     title: "Creche Canina",
     tag: "CRECHE",
     description:
-      "O seu cao passa o dia a brincar, socializar e a ser acompanhado por profissionais dedicados. Ambiente seguro e divertido!",
+      "O seu cão passa o dia a brincar, socializar e a ser acompanhado por profissionais dedicados. Ambiente seguro e divertido!",
     pricing: [
       { label: "Dia inteiro", price: "15" },
       { label: "Meio dia", price: "10" },
@@ -241,7 +241,7 @@ const serviceCategories = [
     title: "Banho & Tosa",
     tag: "BANHO_TOSA",
     description:
-      "Servico de parceiro certificado. O seu cao fica limpinho, cheiroso e com um look impecavel!",
+      "Serviço de parceiro certificado. O seu cão fica limpinho, cheiroso e com um look impecável!",
     pricing: [
       { label: "Banho", price: "12" },
       { label: "Tosa completa", price: "30" },
@@ -257,7 +257,7 @@ const serviceCategories = [
     title: "Hotel Canino",
     tag: "HOTEL",
     description:
-      "Vai de ferias? O seu melhor amigo fica connosco! Pernoitas com acompanhamento 24h e muito mimo.",
+      "Vai de férias? O seu melhor amigo fica connosco! Pernoitas com acompanhamento 24h e muito mimo.",
     pricing: [
       { label: "Pernoita", price: "20" },
       { label: "Fim de semana", price: "50" },
@@ -273,7 +273,7 @@ const serviceCategories = [
     title: "Adestramento",
     tag: "ADESTRAMENTO",
     description:
-      "Treino comportamental e obediencia com metodos positivos. Brevemente disponivel!",
+      "Treino comportamental e obediência com métodos positivos. Brevemente disponível!",
     pricing: [],
     color: "from-purple-500 to-purple-700",
     bgColor: "bg-purple-50",
@@ -294,14 +294,14 @@ const Services = () => {
           className="text-center mb-16"
         >
           <span className="text-amber-500 font-medium text-sm tracking-wider uppercase">
-            Os Nossos Servicos
+            Os Nossos Serviços
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
             Tudo o que o seu patudo precisa
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Desde a creche diaria ate ao hotel para ferias, temos servicos
-            pensados para o bem-estar e felicidade do seu cao.
+            Desde a creche diária até ao hotel para férias, temos serviços
+            pensados para o bem-estar e felicidade do seu cão.
           </p>
         </motion.div>
 
@@ -357,7 +357,7 @@ const Services = () => {
               {cat.comingSoon && (
                 <div className="mt-4 text-center py-3 bg-purple-50 rounded-xl">
                   <p className="text-purple-600 font-medium text-sm">
-                    Em breve disponivel! Fique atento.
+                    Em breve disponível! Fique atento.
                   </p>
                 </div>
               )}
@@ -385,7 +385,7 @@ const About = () => {
             <div className="relative overflow-hidden rounded-2xl shadow-xl">
               <Image
                 src="/images/dogs-checkin.jpg"
-                alt="Check-in de cao na Dog Fella"
+                alt="Check-in de cão na Dog Fella"
                 width={600}
                 height={600}
                 className="object-cover w-full"
@@ -393,7 +393,7 @@ const About = () => {
             </div>
             <div className="absolute -bottom-6 -right-6 bg-sky-600 text-white rounded-2xl p-6 shadow-xl">
               <p className="text-3xl font-bold">100%</p>
-              <p className="text-sky-200 text-sm">Dedicacao canina</p>
+              <p className="text-sky-200 text-sm">Dedicação canina</p>
             </div>
           </motion.div>
 
@@ -410,27 +410,27 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
-                A Dog Fella nasceu do amor incondicional pelos caes e da vontade
-                de criar um espaco onde eles possam ser verdadeiramente felizes.
-                Em Santo Tirso, construimos um ambiente seguro, estimulante e
+                A Dog Fella nasceu do amor incondicional pelos cães e da vontade
+                de criar um espaço onde eles possam ser verdadeiramente felizes.
+                Em Santo Tirso, construímos um ambiente seguro, estimulante e
                 cheio de carinho para o seu melhor amigo.
               </p>
               <p>
-                Acreditamos que cada cao e unico e merece atencao
+                Acreditamos que cada cão é único e merece atenção
                 individualizada. A nossa equipa acompanha cada patudo com
-                dedicacao, garantindo que passam o dia a brincar, socializar e a
+                dedicação, garantindo que passam o dia a brincar, socializar e a
                 receber todo o mimo que merecem.
               </p>
               <p>
-                Seja na creche diaria, nos passeios pela natureza ou no hotel
-                canino, o seu cao esta sempre em boas maos. Porque na Dog Fella,
-                os caes nao sao so clientes - sao familia!
+                Seja na creche diária, nos passeios pela natureza ou no hotel
+                canino, o seu cão está sempre em boas mãos. Porque na Dog Fella,
+                os cães não são só clientes - são família!
               </p>
             </div>
             <div className="flex items-center gap-8 mt-8">
               <div className="text-center">
                 <p className="text-2xl font-bold text-sky-600">5</p>
-                <p className="text-sm text-gray-500">Servicos</p>
+                <p className="text-sm text-gray-500">Serviços</p>
               </div>
               <div className="w-px h-12 bg-sky-200" />
               <div className="text-center">
@@ -464,9 +464,9 @@ const packs = [
     savings: "Poupe 50",
     features: [
       "20 dias de creche completa",
-      "Brincadeiras e socializacao diaria",
+      "Brincadeiras e socialização diária",
       "Acompanhamento personalizado",
-      "Flexibilidade de horarios",
+      "Flexibilidade de horários",
     ],
     accent: "sky",
     popular: true,
@@ -481,7 +481,7 @@ const packs = [
       "5 dias de creche completa",
       "Ideal para semanas ocupadas",
       "Atividades variadas todos os dias",
-      "Relatorio diario do patudo",
+      "Relatório diário do patudo",
     ],
     accent: "green",
     popular: false,
@@ -494,7 +494,7 @@ const packs = [
     savings: "Combo especial",
     features: [
       "10 dias de creche canina",
-      "2 banhos incluidos",
+      "2 banhos incluídos",
       "Patudo sempre limpinho",
       "Melhor valor combinado",
     ],
@@ -502,16 +502,16 @@ const packs = [
     popular: false,
   },
   {
-    name: "Pack Hotel Ferias",
+    name: "Pack Hotel Férias",
     description: "14 noites de hotel canino",
     price: "230",
     originalPrice: "280",
     savings: "Poupe 50",
     features: [
       "14 noites com acompanhamento 24h",
-      "Passeios diarios incluidos",
-      "Perfeito para as suas ferias",
-      "Atualizacoes com fotos do patudo",
+      "Passeios diários incluídos",
+      "Perfeito para as suas férias",
+      "Atualizações com fotos do patudo",
     ],
     accent: "amber",
     popular: false,
@@ -570,8 +570,8 @@ const Packs = () => {
             Poupe com os nossos packs
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Packs pensados para quem quer o melhor para o seu patudo a um preco
-            mais amigo. Mais dias, mais diversao, mais poupanca!
+            Packs pensados para quem quer o melhor para o seu patudo a um preço
+            mais amigo. Mais dias, mais diversão, mais poupança!
           </p>
         </motion.div>
 
@@ -621,7 +621,7 @@ const Packs = () => {
                     ))}
                   </ul>
                   <a
-                    href={`https://wa.me/351910122469?text=Ola! Gostaria de saber mais sobre o ${pack.name}.`}
+                    href={`https://wa.me/351910122469?text=Olá! Gostaria de saber mais sobre o ${pack.name}.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`block w-full text-center py-3 ${colors.button} text-white font-semibold rounded-full transition-colors text-sm`}
@@ -664,14 +664,14 @@ const ComingSoon = () => {
                 </span>
               </div>
               <p className="text-white/80 max-w-lg">
-                Em breve, vamos oferecer treino comportamental e obediencia com
-                metodos positivos. Treino individual e em grupo para caes de
+                Em breve, vamos oferecer treino comportamental e obediência com
+                métodos positivos. Treino individual e em grupo para cães de
                 todas as idades. Fique atento!
               </p>
             </div>
           </div>
           <a
-            href="https://wa.me/351910122469?text=Ola! Gostaria de ser informado quando o servico de adestramento estiver disponivel."
+            href="https://wa.me/351910122469?text=Olá! Gostaria de ser informado quando o serviço de adestramento estiver disponível."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-purple-700 font-semibold rounded-full hover:bg-gray-100 transition-colors flex-shrink-0"
@@ -701,10 +701,10 @@ const Gallery = () => {
             Galeria
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
-            Os nossos patudos em acao
+            Os nossos patudos em ação
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Veja como os caes se divertem na Dog Fella. Dias cheios de
+            Veja como os cães se divertem na Dog Fella. Dias cheios de
             brincadeiras, amizades e muita alegria!
           </p>
         </motion.div>
@@ -718,14 +718,14 @@ const Gallery = () => {
           >
             <Image
               src="/images/dogs-gallery.png"
-              alt="Colagem de caes na Dog Fella"
+              alt="Colagem de cães na Dog Fella"
               width={800}
               height={600}
               className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="absolute bottom-6 left-6">
-                <p className="text-white font-bold text-lg">Dias de diversao</p>
+                <p className="text-white font-bold text-lg">Dias de diversão</p>
                 <p className="text-white/80 text-sm">Os nossos amigos de quatro patas</p>
               </div>
             </div>
@@ -740,7 +740,7 @@ const Gallery = () => {
           >
             <Image
               src="/images/dogs-relaxing.jpg"
-              alt="Caes a relaxar na Dog Fella"
+              alt="Cães a relaxar na Dog Fella"
               width={800}
               height={600}
               className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
@@ -748,7 +748,7 @@ const Gallery = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="absolute bottom-6 left-6">
                 <p className="text-white font-bold text-lg">Momentos de descanso</p>
-                <p className="text-white/80 text-sm">Relaxamento apos um dia de brincadeiras</p>
+                <p className="text-white/80 text-sm">Relaxamento após um dia de brincadeiras</p>
               </div>
             </div>
           </motion.div>
@@ -795,8 +795,8 @@ const Contact = () => {
             Venha conhecer a Dog Fella
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Estamos a sua espera em Santo Tirso! Entre em contacto para saber
-            mais ou agendar uma visita ao nosso espaco.
+            Estamos à sua espera em Santo Tirso! Entre em contacto para saber
+            mais ou agendar uma visita ao nosso espaço.
           </p>
         </motion.div>
 
@@ -878,7 +878,7 @@ const Contact = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <Clock className="text-sky-600" size={24} />
-              <h3 className="text-xl font-bold text-gray-900">Horario</h3>
+              <h3 className="text-xl font-bold text-gray-900">Horário</h3>
             </div>
             <div className="space-y-4">
               <div className="flex justify-between items-center py-3 border-b border-gray-100">
@@ -886,7 +886,7 @@ const Contact = () => {
                 <span className="text-sky-600 font-bold">7h30 - 20h00</span>
               </div>
               <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-700 font-medium">Sabado</span>
+                <span className="text-gray-700 font-medium">Sábado</span>
                 <span className="text-sky-600 font-bold">9h00 - 13h00</span>
               </div>
               <div className="flex justify-between items-center py-3">
@@ -917,7 +917,7 @@ const Contact = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localizacao Dog Fella - Santo Tirso"
+              title="Localização Dog Fella - Santo Tirso"
             />
           </motion.div>
         </div>
@@ -930,7 +930,7 @@ const Contact = () => {
           className="text-center mt-12"
         >
           <a
-            href="https://wa.me/351910122469?text=Ola! Gostaria de agendar uma visita a Dog Fella."
+            href="https://wa.me/351910122469?text=Olá! Gostaria de agendar uma visita a Dog Fella."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-5 bg-green-600 text-white font-bold rounded-full hover:bg-green-500 transition-all shadow-lg shadow-green-600/25 hover:shadow-green-600/40 text-lg"
@@ -968,7 +968,7 @@ const Footer = () => {
           {/* Quick links */}
           <div className="flex flex-col items-center gap-2 text-sm">
             <a href="#servicos" className="hover:text-sky-400 transition-colors">
-              Servicos
+              Serviços
             </a>
             <a href="#packs" className="hover:text-sky-400 transition-colors">
               Packs
@@ -1014,7 +1014,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-8 pt-6 text-center">
           <p className="text-gray-600 text-xs">
-            Rua Varziela, 72, Santo Tirso, Portugal, 4780-560 &bull; Tel: 910 122 469 &bull; dogfela.pt
+            Rua Varziela, 72, Santo Tirso, Portugal, 4780-560 &bull; Tel: 910 122 469 &bull; dogfella.pt
           </p>
         </div>
       </div>
@@ -1027,7 +1027,7 @@ const Footer = () => {
 const FloatingWhatsApp = () => {
   return (
     <motion.a
-      href="https://wa.me/351910122469?text=Ola! Gostaria de saber mais sobre a Dog Fella."
+      href="https://wa.me/351910122469?text=Olá! Gostaria de saber mais sobre a Dog Fella."
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:bg-green-400 transition-colors"
